@@ -13,10 +13,12 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <spring.version>5.3.20</spring.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <spring.version>5.3.16</spring.version>
         <open.csv.version>5.6</open.csv.version>
+        <rest.assure.version>5.1.0</rest.assure.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencyManagement>
@@ -47,15 +49,10 @@
                 <version>${spring.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.junit.platform</groupId>
-                <artifactId>junit-platform-commons</artifactId>
-                <version>1.8.2</version>
-                <scope>test</scope>
-            </dependency>
+
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
+                <artifactId>junit-jupiter-engine</artifactId>
                 <version>5.8.2</version>
                 <scope>test</scope>
             </dependency>
@@ -80,8 +77,19 @@
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>1.7.36</version>
             </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest.assure.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${rest.assure.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
+
 
 </project>
