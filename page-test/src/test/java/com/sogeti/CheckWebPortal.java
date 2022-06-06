@@ -3,9 +3,10 @@ package com.sogeti;
 import com.sogeti.domain.PageForm;
 
 
-import org.junit.jupiter.api.*;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.openqa.selenium.*;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -15,9 +16,9 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 
-public class TestWebPortal {
+public class CheckWebPortal {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestWebPortal.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CheckWebPortal.class);
 
 
     String xpathServices = "html/body/div[1]/header/div[2]/nav/ul/li[3]/div[1]/span";
@@ -25,7 +26,6 @@ public class TestWebPortal {
 
 
     @Test
-    @DisplayName("Automation Section open")
     public void testCase1() throws InterruptedException {
         WebDriverManager wdm = WebDriverManager.firefoxdriver().enableVnc().browserInDocker().enableRecording();
         WebDriver driver = wdm.create();
@@ -46,21 +46,19 @@ public class TestWebPortal {
         actions.moveToElement(automation).click().build().perform();
 
         //Verify automation is loaded
-        Assertions.assertTrue(automation.isDisplayed());
+        Assert.assertTrue(automation.isDisplayed());
         Thread.sleep(1000);
 
         service = driver.findElement(By.xpath(xpathServices));
         automation = driver.findElement(By.xpath(xpathAutomation));
         //Hover again to Services menu
         actions.moveToElement(service).click().build().perform();
-        Assertions.assertTrue(service.isEnabled() & automation.isEnabled());
+        Assert.assertTrue(service.isEnabled() & automation.isEnabled());
         wdm.quit();
 
     }
 
     @Test
-    @DisplayName("Fill Form and Send Data")
-    @Disabled("Due to the captcha issue it's ignored")
     public void testCase2() throws InterruptedException {
         WebDriverManager wdm = WebDriverManager.firefoxdriver().enableVnc().browserInDocker().enableRecording();
         WebDriver driver = wdm.create();
@@ -117,8 +115,8 @@ public class TestWebPortal {
         Thread.sleep(3000);
         wdm.quit();
     }
+
     @Test
-    @DisplayName("Worldwide pages")
     public void testCase3() throws InterruptedException {
         WebDriverManager wdm = WebDriverManager.firefoxdriver().enableVnc().browserInDocker().enableRecording();
         WebDriver driver = wdm.create();
@@ -136,7 +134,7 @@ public class TestWebPortal {
         for(WebElement e : countries){
            e.click();
            Thread.sleep(3000);
-           Assertions.assertTrue(e.isEnabled() & e.isDisplayed());
+           Assert.assertTrue(e.isEnabled() & e.isDisplayed());
         }
         wdm.quit();
     }

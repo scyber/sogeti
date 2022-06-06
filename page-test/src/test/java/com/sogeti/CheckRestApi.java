@@ -12,23 +12,22 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
+import org.junit.Assert;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
-public class TestRestApi {
+public class CheckRestApi {
 
     private static RequestSpecification spec;
 
     @Test
-    @DisplayName("Check Stuttgart API info")
-    public void testCase4_1(){
+    public void testCase4_1() {
         String url = "http://api.zippopotam.us/de/bw/stuttgart";
         spec = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
@@ -39,25 +38,20 @@ public class TestRestApi {
 
         Response response = RestAssured.given(spec).get();
         long responseTimeInMilliSeconds = response.getTimeIn(TimeUnit.MILLISECONDS);
-        Assertions.assertEquals(ContentType.JSON.toString(),response.getContentType());
-        Assertions.assertTrue(responseTimeInMilliSeconds < 1000);
-        Assertions.assertEquals(200,response.getStatusCode());
+        Assert.assertEquals(ContentType.JSON.toString(),response.getContentType());
+        Assert.assertTrue(responseTimeInMilliSeconds < 1000);
+        Assert.assertEquals(200,response.getStatusCode());
         JsonPath jsonPath = new JsonPath(response.getBody().asString());
-
         String country = jsonPath.getString("country");
-        Assertions.assertEquals("Germany", country);
+        Assert.assertEquals("Germany", country);
         String state = jsonPath.getString("state");
-        Assertions.assertEquals("Baden-Württemberg", state);
-
+        Assert.assertEquals("Baden-Württemberg", state);
         List<PlaceItem> places =  jsonPath.getList("places", PlaceItem.class);
-
-       List<String> filtred = places.stream().filter(p -> p.getPostCode().equals("70597")).map(p -> p.getPlaceName()).collect(Collectors.toList());
-       Assertions.assertTrue(filtred.contains("Stuttgart Degerloch"));
-
+        List<String> filtred = places.stream().filter(p -> p.getPostCode().equals("70597")).map(p -> p.getPlaceName()).collect(Collectors.toList());
+        Assert.assertTrue(filtred.contains("Stuttgart Degerloch"));
     }
 
     @Test
-    @DisplayName("Check countries API Info")
     public void testCase4_2() {
         String url = "http://api.zippopotam.us/";
 
@@ -74,11 +68,11 @@ public class TestRestApi {
            Response response = RestAssured.given(spec).get();
            long responseTimeInMilliSeconds = response.getTimeIn(TimeUnit.MILLISECONDS);
            JsonPath jsonPath = new JsonPath(response.getBody().asString());
-           Assertions.assertEquals(ContentType.JSON.toString(), response.getContentType());
+           Assert.assertEquals(ContentType.JSON.toString(), response.getContentType());
            List<String> placeName = jsonPath.getList("places.'place name'");
-           Assertions.assertEquals(c.getCityName(),placeName.get(0));
-           Assertions.assertTrue(responseTimeInMilliSeconds < 1000);
-           Assertions.assertEquals(200, response.getStatusCode());
+           Assert.assertEquals(c.getCityName(),placeName.get(0));
+           Assert.assertTrue(responseTimeInMilliSeconds < 1000);
+           Assert.assertEquals(200, response.getStatusCode());
         });
 
     }
