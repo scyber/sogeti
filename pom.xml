@@ -2,12 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+
 
     <groupId>com.sogeti</groupId>
     <artifactId>test-task</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>page-test</module>
     </modules>
@@ -29,30 +30,18 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.opencsv</groupId>
                 <artifactId>opencsv</artifactId>
                 <version>${open.csv.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.8.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
                 <version>5.8.2</version>
                 <scope>test</scope>
             </dependency>
@@ -61,12 +50,6 @@
                 <artifactId>webdrivermanager</artifactId>
                 <version>5.2.0</version>
             </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>4.3.0</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-java</artifactId>
@@ -87,9 +70,7 @@
                 <artifactId>json-path</artifactId>
                 <version>${rest.assure.version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
-
 
 </project>

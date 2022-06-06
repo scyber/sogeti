@@ -1,3 +1,4 @@
+package com.sogeti;
 
 import com.sogeti.domain.PageForm;
 
@@ -11,13 +12,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
 import java.util.List;
 
 
-public class testWebPortal {
+public class TestWebPortal {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(testWebPortal.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestWebPortal.class);
 
 
     String xpathServices = "html/body/div[1]/header/div[2]/nav/ul/li[3]/div[1]/span";
@@ -78,10 +78,8 @@ public class testWebPortal {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         PageForm form = PageForm.getFormObject();
 
-
         WebElement firsName = driver.findElement(By.xpath("//*[@id='4ff2ed4d-4861-4914-86eb-87dfa65876d8']"));
         actions.moveToElement(firsName);
-        System.out.println(form.getFirstName());
         js.executeScript("arguments[0].scrollIntoView();", firsName);
 
         firsName.sendKeys("FirstName");

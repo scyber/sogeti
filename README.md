@@ -38,18 +38,18 @@ mvn
 
 docker info
 ## How to Run tests from command line
-mvn test -Dtest=testWebPortal#testCase1
+mvn test -Dtest=TestWebPortal#testCase1
 
 ### testCase3 is disabled due to Captcha reason
 
-mvn test -Dtest=testWebPortal#testCase3
+mvn test -Dtest=TestWebPortal#testCase3
 ### run all Selenium tests
-mvn test -Dtest=testWebPortal
+mvn test -Dtest=TestWebPortal
 
 ### run Api tests
-mvn test -Dtest=testRestApi#testCase4_1
+mvn test -Dtest=TestRestApi#testCase4_1
 
-mvn test -Dtest=testRestApi#testCase4_2
+mvn test -Dtest=TestRestApi#testCase4_2
 
 ### run all Api tests
-mvn test -Dtest=testRestApi
+mvn test -Dtest=TestRestApi

@@ -1,3 +1,5 @@
+package com.sogeti;
+
 import com.sogeti.domain.CountryDto;
 import com.sogeti.domain.PlaceItem;
 import com.sogeti.repository.CountryRepository;
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
-public class testRestApi {
+public class TestRestApi {
 
     private static RequestSpecification spec;
 
